@@ -256,3 +256,7 @@ hs_err_pid*
 replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+all,java,intellij+iml
+
+**/front-end/node_modules/**
+**/front-end/static/**
+.gradle/
