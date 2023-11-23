@@ -35,4 +35,18 @@ public class UserServiceTest {
 
         Assertions.assertDoesNotThrow(()-> userService.join(userName,password));
     }
+
+
+    @Test
+    void 회원가입시_userName으로_회원가입한_유저가_이미_있는경우(){
+
+        String userName = "userName";
+        String password = "password";
+
+//        Mocking
+        when(userEntityRepository.findByUserName(userName)).thenReturn(Optional.empty());
+        when(userEntityRepository.save(any())).thenReturn(Optional.of(mock(UserEntity.class)));
+
+        Assertions.assertDoesNotThrow(()-> userService.join(userName,password));
+    }
 }

@@ -1,6 +1,6 @@
-package com.sns.model.entity;
+package com.sns.snsjava.model.entity;
 
-import com.sns.model.UserRole;
+import com.sns.snsjava.model.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -11,10 +11,12 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"user\"")
+//@Table(name = "\"user\"")
+@Table(name = "users")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATED \"user\" SET deleted_at = NOW() where id=?")
+//@SQLDelete(sql = "UPDATE \"user\" SET deleted_at = NOW() where id=?")
+@SQLDelete(sql = "UPDATE \"user\" SET deleted_at = NOW() where id=?")
 @Where(clause = "deleted_at is NULL")
 public class UserEntity {
 

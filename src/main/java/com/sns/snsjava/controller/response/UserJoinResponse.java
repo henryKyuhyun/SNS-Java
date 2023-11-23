@@ -1,7 +1,7 @@
-package com.sns.controller.response;
+package com.sns.snsjava.controller.response;
 
-import com.sns.model.User;
-import com.sns.model.UserRole;
+import com.sns.snsjava.model.User;
+import com.sns.snsjava.model.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

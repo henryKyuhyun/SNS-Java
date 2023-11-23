@@ -1,4 +1,4 @@
-package com.sns.model;
+package com.sns.snsjava.model;
 
 public enum UserRole {
 

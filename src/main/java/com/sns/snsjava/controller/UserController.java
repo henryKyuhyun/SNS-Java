@@ -1,10 +1,10 @@
-package com.sns.controller;
+package com.sns.snsjava.controller;
 
-import com.sns.controller.request.UserJoinRequest;
-import com.sns.controller.response.Response;
-import com.sns.controller.response.UserJoinResponse;
-import com.sns.model.User;
-import com.sns.service.UserService;
+import com.sns.snsjava.controller.request.UserJoinRequest;
+import com.sns.snsjava.controller.response.Response;
+import com.sns.snsjava.controller.response.UserJoinResponse;
+import com.sns.snsjava.model.User;
+import com.sns.snsjava.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

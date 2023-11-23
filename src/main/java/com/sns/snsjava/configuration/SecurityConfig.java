@@ -1,4 +1,4 @@
-package com.sns.configuration;
+package com.sns.snsjava.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
