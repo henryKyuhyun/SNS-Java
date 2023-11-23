@@ -1,6 +1,6 @@
-package com.sns.snsjava.model.entity;
+package com.sns.model.entity;
 
-import com.sns.snsjava.model.UserRole;
+import com.sns.model.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;

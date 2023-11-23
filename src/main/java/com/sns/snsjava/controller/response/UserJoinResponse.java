@@ -1,10 +1,11 @@
-package com.sns.snsjava.controller.response;
+package com.sns.controller.response;
 
-import com.sns.snsjava.model.User;
-import com.sns.snsjava.model.UserRole;
+import com.sns.model.User;
+import com.sns.model.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
 public class UserJoinResponse {
 

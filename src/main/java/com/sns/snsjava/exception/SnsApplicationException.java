@@ -1,4 +1,4 @@
-package com.sns.snsjava.exception;
+package com.sns.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

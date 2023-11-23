@@ -1,6 +1,6 @@
-package com.sns.snsjava.model;
+package com.sns.model;
 
-import com.sns.snsjava.model.entity.UserEntity;
+import com.sns.model.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

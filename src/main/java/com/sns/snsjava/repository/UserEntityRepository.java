@@ -1,11 +1,9 @@
-package com.sns.snsjava.repository;
+package com.sns.repository;
 
-import com.sns.snsjava.model.entity.UserEntity;
+import com.sns.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
-
 @Repository
 public interface UserEntityRepository extends JpaRepository<UserEntity,Integer> {
 

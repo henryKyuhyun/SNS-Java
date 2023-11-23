@@ -1,4 +1,4 @@
-package com.sns.snsjava.controller.response;
+package com.sns.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
