@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
-    @Value("${jswt.secret.ket}")
+    @Value("${jwt.secret.key}")
     private String key;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,7 +29,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilterBefore(new JwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenFilter(key,userService), UsernamePasswordAuthenticationFilter.class)
                 ;
 
 //                TODO : Implement

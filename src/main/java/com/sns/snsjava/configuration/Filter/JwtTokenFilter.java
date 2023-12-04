@@ -1,9 +1,15 @@
 package com.sns.snsjava.configuration.Filter;
 
+import com.sns.snsjava.model.User;
+import com.sns.snsjava.service.UserService;
+import com.sns.snsjava.util.JwtTokenUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.Filter;
@@ -12,9 +18,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
+@RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
+
+    private final String key;
+    private final UserService userService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -28,18 +39,25 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         try {
             final String token = header.split(" ")[1].trim();
 
-//            TODO : check token is valid
-//            TODO : get userName from token
-            String userName = "";
-
-//            TODO : verified userName is valid
+            if(JwtTokenUtils.isExpired(token,key)) {
+                log.error("Key is expired");
+                filterChain.doFilter(request, response);
+                return;
+            }
+            String userName = JwtTokenUtils.getUserName(token,key);
+            User user = userService.loadUserByUserName(userName);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-//                    TODO :
-                    null, null, null
+                    user, null, List.of(new SimpleGrantedAuthority(user.getUserRole().toString()))
             );
-
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
+        }catch(RuntimeException e) {
+            log.error("Error accurs while validating. {}" , e.toString());
+            filterChain.doFilter(request,response);
+            return;
         }
+
+        filterChain.doFilter(request, response);
 
 
     }
