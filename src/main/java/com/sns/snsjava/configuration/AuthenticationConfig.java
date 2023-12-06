@@ -1,6 +1,7 @@
 package com.sns.snsjava.configuration;
 
 import com.sns.snsjava.configuration.Filter.JwtTokenFilter;
+import com.sns.snsjava.exception.CustomAuthenticationEntryPoint;
 import com.sns.snsjava.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
-    @Value("${jwt.secret.key}")
+    @Value("${jwt.secret-key}")
     private String key;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,10 +31,11 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterBefore(new JwtTokenFilter(key,userService), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
                 ;
 
-//                TODO : Implement
-//                .exceptionHandling()
-//                .authenticationEntryPoint()
+
+
     }
 }
