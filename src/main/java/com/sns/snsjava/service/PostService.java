@@ -42,7 +42,22 @@ public class PostService {
         postEntity.setTitle(title);
         postEntity.setBody(body);
 
-        return Post.fromEntity(postEntityRepository.save(postEntity));
+        return Post.fromEntity(postEntityRepository.saveAndFlush(postEntity));
+    }
 
+    public void delete(String userName, Integer postId){
+        UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() ->
+                new SnsApplicationException(ErrorCode.USER_NOT_FOUNDED, String.format("%s not founded", userName)));
+
+//        postExist
+        PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() ->
+                new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
+
+//        postPermission
+        if(postEntity.getUser() != userEntity) {
+            throw new SnsApplicationException(ErrorCode.INVALID_PERMISSION, String.format("%s has no permission with %s",userName, postId));
+        }
+
+        postEntityRepository.delete(postEntity);
     }
 }
