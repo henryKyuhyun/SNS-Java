@@ -13,6 +13,7 @@ public enum ErrorCode {
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED,"token is invalid"),
     POST_NOT_FOUND(HttpStatus.NOT_FOUND,"Post not founded"),
     INVALID_PERMISSION(HttpStatus.UNAUTHORIZED,"Permission is invalid"),
+    DATABASE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error occurs in database"),
 
     USER_NOT_FOUNDED(HttpStatus.NOT_FOUND,"User not founded");
     ;
