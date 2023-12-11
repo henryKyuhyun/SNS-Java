@@ -11,8 +11,8 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
-//@Table(name = "\"user\"")
-@Table(name = "users")
+@Table(name = "\"user\"")
+//@Table(name = "users")
 @Getter
 @Setter
 //@SQLDelete(sql = "UPDATE \"user\" SET deleted_at = NOW() where id=?")
