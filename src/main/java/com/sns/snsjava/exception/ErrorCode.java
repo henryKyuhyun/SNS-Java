@@ -15,7 +15,9 @@ public enum ErrorCode {
     INVALID_PERMISSION(HttpStatus.UNAUTHORIZED,"Permission is invalid"),
     DATABASE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error occurs in database"),
 
-    USER_NOT_FOUNDED(HttpStatus.NOT_FOUND,"User not founded");
+    USER_NOT_FOUNDED(HttpStatus.NOT_FOUND,"User not founded"),
+    ALREADY_LIKED(HttpStatus.CONFLICT,"User already liked the post")
+    ;
     ;
 
     private HttpStatus status;

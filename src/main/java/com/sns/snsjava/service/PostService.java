@@ -3,8 +3,10 @@ package com.sns.snsjava.service;
 import com.sns.snsjava.exception.ErrorCode;
 import com.sns.snsjava.exception.SnsApplicationException;
 import com.sns.snsjava.model.Post;
+import com.sns.snsjava.model.entity.LikeEntity;
 import com.sns.snsjava.model.entity.PostEntity;
 import com.sns.snsjava.model.entity.UserEntity;
+import com.sns.snsjava.repository.LikeEntityRepository;
 import com.sns.snsjava.repository.PostEntityRepository;
 import com.sns.snsjava.repository.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class PostService {
 
     private final PostEntityRepository postEntityRepository;
     private final UserEntityRepository userEntityRepository;
+    private final LikeEntityRepository likeEntityRepository;
 
     @Transactional
     public void create(String title, String body, String userName) {
@@ -79,6 +82,19 @@ public class PostService {
 
     @Transactional
     public void like(Integer postId, String userName){
+        //        postExist
+        PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() ->
+                new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
+//        userExist
+        UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() ->
+                new SnsApplicationException(ErrorCode.USER_NOT_FOUNDED, String.format("%s not founded", userName)));
 
+//        like 를 한번만 눌를수있도록 이 유저가 이미눌렀는지 안눌렀는지 확인하는 로직도 필요
+//        Check liked -> throw
+        likeEntityRepository.findByUserAndPost(userEntity,postEntity).ifPresent(it -> {
+            throw new SnsApplicationException(ErrorCode.ALREADY_LIKED,String.format("userName %s already like post %d", userName, postId))
+        });
+        //        like save
+        likeEntityRepository.save(LikeEntity.of(userEntity,postEntity));
     }
 }
