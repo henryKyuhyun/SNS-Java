@@ -40,7 +40,7 @@ public class UserEntity {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name = "deleted_at")
+    @Column(name = "removed_at")
     private Timestamp deletedAt;
 
     @PrePersist

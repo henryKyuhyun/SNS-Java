@@ -39,7 +39,7 @@ public class PostEntity {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name = "deleted_at")
+    @Column(name = "removed_at")
     private Timestamp deletedAt;
 
     @PrePersist
@@ -59,7 +59,6 @@ public class PostEntity {
         entity.setBody(body);
         entity.setUser(userEntity);
         return entity;
-
     }
 
 }

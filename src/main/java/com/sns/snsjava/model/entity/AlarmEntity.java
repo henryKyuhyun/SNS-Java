@@ -31,7 +31,7 @@ public class AlarmEntity {
 
     // 알람을 발생시킨사람, 알람을 받는사람 구분잘해야함
     //    아래유저는 알람을 받은사람
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
@@ -47,7 +47,8 @@ public class AlarmEntity {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name = "deleted_at")
+
+    @Column(name = "removed_at")
     private Timestamp deletedAt;
 
     @PrePersist

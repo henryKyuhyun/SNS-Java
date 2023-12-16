@@ -48,6 +48,8 @@ public class LikeEntity {
         this.updatedAt = Timestamp.from(Instant.now());
     }
 
+    @Column(name = "removed_at")
+    private Timestamp removedAt;
     public static LikeEntity of(UserEntity userEntity,PostEntity postEntity){
 
         LikeEntity entity = new LikeEntity();

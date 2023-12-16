@@ -52,22 +52,16 @@ public class UserService {
     public String login(String userName, String password) {
 //        회원가입 여부 체크
         UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() -> new SnsApplicationException(ErrorCode.USER_NOT_FOUNDED,String.format("%s not founded", userName)));
-
 //        비밀번호 확인
         if (encoder.matches(password,userEntity.getPassword())){
             throw new SnsApplicationException(ErrorCode.INVALID_PASSWORD);
         }
-
 //        토큰 생성
         String token = JwtTokenUtils.generateToken(userName,secretKey,expiredTimeMs);
         return token;
     }
 
-//    TODO : alarmList
-     public Page<Alarm> alarmList(String userName, Pageable pageable) {
-        UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() -> new SnsApplicationException(ErrorCode.USER_NOT_FOUNDED,String.format("%s not founded", userName)));
-
-        return alarmEntityRepository.findAllByUser(userEntity,pageable).map(Alarm::fromEntity);
-
+     public Page<Alarm> alarmList(Integer userId, Pageable pageable) {
+        return alarmEntityRepository.findAllByUserId(userId,pageable).map(Alarm::fromEntity);
      }
 }

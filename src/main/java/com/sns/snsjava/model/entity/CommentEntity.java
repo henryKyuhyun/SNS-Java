@@ -52,6 +52,8 @@ public class CommentEntity {
     void updatedAt(){
         this.updatedAt = Timestamp.from(Instant.now());
     }
+    @Column(name = "removed_at")
+    private Timestamp removedAt;
 
     public static CommentEntity of(UserEntity userEntity, PostEntity postEntity,String comment){
         CommentEntity entity = new CommentEntity();
