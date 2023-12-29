@@ -16,8 +16,8 @@ public enum ErrorCode {
     DATABASE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error occurs in database"),
 
     USER_NOT_FOUNDED(HttpStatus.NOT_FOUND,"User not founded"),
-    ALREADY_LIKED(HttpStatus.CONFLICT,"User already liked the post")
-    ;
+    ALREADY_LIKED(HttpStatus.CONFLICT,"User already liked the post"),
+    ALARM_CONNECT_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,"Connection alarm occurs error")
     ;
 
     private HttpStatus status;
