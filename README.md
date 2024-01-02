@@ -1,4 +1,9 @@
 # Simple SNS
+![Screenshot 2023-12-29 at 11 50 57 pm](https://github.com/henryKyuhyun/SNS-Java/assets/118201123/201f4144-4425-459a-92bf-a3d6751fa343)
+
+![Screenshot 2023-12-29 at 11 52 53 pm](https://github.com/henryKyuhyun/SNS-Java/assets/118201123/4e0ec758-c83e-4b5a-877e-26a0c9a5a1e9)
+
+![Screenshot 2023-12-29 at 11 51 30 pm](https://github.com/henryKyuhyun/SNS-Java/assets/118201123/4e5965a5-3ef4-4f34-98b9-56f64126753f)
 
 ## Flow Chart
 
